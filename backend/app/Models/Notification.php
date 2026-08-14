@@ -13,6 +13,14 @@ class Notification extends Model
 {
     use HasFactory, HasUuids;
 
+    /**
+     * Renamed from 'notifications' -> 'app_notifications' so Laravel's
+     * native Notification::send()->database() channel (polymorphic
+     * notifiable_type/notifiable_id schema) can own the default table
+     * name if/when we adopt it, without a naming collision.
+     */
+    protected $table = 'app_notifications';
+
     public const UPDATED_AT = null;
 
     protected function casts(): array
